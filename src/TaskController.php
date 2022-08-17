@@ -63,10 +63,13 @@ Class TaskController {
     
                     }
 
-                    echo "update $id";
+                    $rows = $this->gateway->update($id, $data);
+                    echo json_encode(["message" => "task updated", "rows" => $rows]);
                     break;
+                     
                 case "DELETE":
-                    echo "delete $id";
+                    $rows = $this->gateway->delete($id);
+                    echo json_encode(["message" => "task deleted", "rows" => $rows]);
                     break;
                 default:
                     $this->respondMethodNotAllowed("GET, PATCH, DELETE");
